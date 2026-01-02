@@ -1,79 +1,132 @@
-import React from 'react';
-import { FaCloud, FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaGithub } from 'react-icons/fa';
+import {
+  FaCloud,
+  FaTwitter,
+  FaLinkedin,
+  FaGithub,
+  FaEnvelope,
+} from "react-icons/fa";
 
-const Footer = () => {
+const FOOTER_LINKS = {
+  Product: [
+    { label: "Features", href: "#features" },
+    { label: "Pricing", href: "#pricing" },
+    { label: "API", href: "#features" },
+    { label: "Documentation", href: "#features" },
+  ],
+  Company: [
+    { label: "About", href: "#home" },
+    { label: "Blog", href: "#home" },
+    { label: "Careers", href: "#contact" },
+    { label: "Contact", href: "#contact" },
+  ],
+  Legal: [
+    { label: "Privacy Policy", href: "#home" },
+    { label: "Terms of Service", href: "#home" },
+    { label: "Security", href: "#features" },
+  ],
+};
+
+const SOCIAL_LINKS = [
+  { Icon: FaGithub, href: "https://github.com/IllalRajinCoding", label: "GitHub" },
+  { Icon: FaTwitter, href: "https://twitter.com/IllalRajinCoding", label: "Twitter" },
+  { Icon: FaLinkedin, href: "https://linkedin.com/in/robbanie-hillaly-kurniadien", label: "LinkedIn" },
+  { Icon: FaEnvelope, href: "admin@horedev4sec.biz.id", label: "Email" },
+];
+
+function Footer() {
   return (
-    <footer className="bg-slate-950 pt-32 pb-12 relative overflow-hidden border-t border-white/5">
-      {/* Watermark */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-[15vw] font-bold text-white/[0.02] pointer-events-none whitespace-nowrap select-none">
-        HORE CLOUD
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid md:grid-cols-12 gap-12 mb-20">
-          <div className="md:col-span-5">
-            <a href="#" className="flex items-center gap-2 text-2xl font-bold text-white mb-6">
-              <FaCloud className="text-primary" />
-              <span>Hore Cloud</span>
+    <footer id="contact" className="bg-slate-900 text-white pt-16 pb-8">
+      <div className="container mx-auto px-6 max-w-6xl">
+        <div className="grid md:grid-cols-12 gap-12 mb-12">
+          {/* Brand Section */}
+          <div className="md:col-span-4">
+            <a href="#home" className="flex items-center gap-2 mb-4">
+              <div className="w-8 h-8 bg-primary flex items-center justify-center text-white">
+                <FaCloud className="text-sm" />
+              </div>
+              <span className="text-lg font-semibold">
+                Hore<span className="text-primary">Cloud</span>
+              </span>
             </a>
-            <p className="text-slate-400 leading-relaxed mb-8 max-w-md">
-              Empowering the next generation of digital businesses with high-performance, secure, and scalable cloud infrastructure.
+            <p className="text-slate-400 text-sm mb-6 max-w-xs">
+              Enterprise cloud infrastructure for modern businesses. Deploy
+              globally with confidence.
             </p>
-            <div className="flex gap-4">
-              {[FaGithub, FaTwitter, FaLinkedin, FaInstagram].map((Icon, i) => (
-                <a key={i} href="#" className="w-10 h-10 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all">
-                  <Icon />
+            <div className="flex gap-3">
+              {SOCIAL_LINKS.map(({ Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 bg-slate-800 flex items-center justify-center text-slate-400 hover:text-primary hover:bg-slate-700 transition-colors"
+                >
+                  <Icon className="text-sm" />
                 </a>
               ))}
             </div>
           </div>
-          
-          <div className="md:col-span-2">
-            <h4 className="text-white font-bold mb-6">Product</h4>
-            <ul className="space-y-4">
-              <li><a href="#" className="text-slate-400 hover:text-primary transition-colors">Features</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-primary transition-colors">Pricing</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-primary transition-colors">API</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-primary transition-colors">Integration</a></li>
-            </ul>
-          </div>
-          
-          <div className="md:col-span-2">
-            <h4 className="text-white font-bold mb-6">Company</h4>
-            <ul className="space-y-4">
-              <li><a href="#" className="text-slate-400 hover:text-primary transition-colors">About</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-primary transition-colors">Blog</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-primary transition-colors">Careers</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-primary transition-colors">Contact</a></li>
-            </ul>
-          </div>
-          
-          <div className="md:col-span-3">
-            <h4 className="text-white font-bold mb-6">Stay Updated</h4>
-            <p className="text-slate-400 text-sm mb-4">Subscribe to our newsletter for the latest cloud trends.</p>
-            <div className="flex gap-2">
-              <input 
-                type="email" 
-                placeholder="Enter your email" 
-                className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 w-full focus:outline-none focus:border-primary/50 text-white"
-              />
-              <button className="btn btn-primary rounded-lg px-4">
-                Join
-              </button>
+
+          {/* Links Sections */}
+          {Object.entries(FOOTER_LINKS).map(([category, links]) => (
+            <div key={category} className="md:col-span-2">
+              <h4 className="font-semibold mb-4">{category}</h4>
+              <ul className="space-y-3">
+                {links.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      className="text-sm text-slate-400 hover:text-primary transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
+          ))}
+
+          {/* Newsletter */}
+          <div className="md:col-span-4">
+            <h4 className="font-semibold mb-4">Stay Updated</h4>
+            <p className="text-sm text-slate-400 mb-4">
+              Subscribe for product updates and cloud infrastructure tips.
+            </p>
+            <form className="flex gap-2" onSubmit={(e) => e.preventDefault()}>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="flex-1 bg-slate-800 border border-slate-700 px-4 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-primary"
+              />
+              <button
+                type="submit"
+                className="bg-primary text-white px-4 py-2 text-sm font-medium hover:bg-secondary transition-colors"
+              >
+                Subscribe
+              </button>
+            </form>
           </div>
         </div>
-        
-        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
-          <p>&copy; 2025 PT HORA HORE. All rights reserved.</p>
-          <div className="flex gap-8">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+
+        {/* Bottom Bar */}
+        <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
+          <p>2026 HoreCloud. All rights reserved.</p>
+          <div className="flex gap-6">
+            <a href="#home" className="hover:text-primary transition-colors">
+              Privacy
+            </a>
+            <a href="#home" className="hover:text-primary transition-colors">
+              Terms
+            </a>
+            <a href="#home" className="hover:text-primary transition-colors">
+              Cookies
+            </a>
           </div>
         </div>
       </div>
     </footer>
   );
-};
+}
 
 export default Footer;

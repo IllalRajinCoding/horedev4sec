@@ -1,46 +1,55 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaAmazon, FaGoogle, FaMicrosoft, FaSpotify, FaAirbnb, FaUber, FaAws, FaCloud } from 'react-icons/fa';
+import { motion } from "framer-motion";
+import {
+  FaAmazon,
+  FaGoogle,
+  FaMicrosoft,
+  FaSlack,
+  FaDropbox,
+  FaStripe,
+} from "react-icons/fa";
 
-const partners = [
-  { name: 'Amazon', icon: FaAmazon },
-  { name: 'Google', icon: FaGoogle },
-  { name: 'Microsoft', icon: FaMicrosoft },
-  { name: 'Spotify', icon: FaSpotify },
-  { name: 'Airbnb', icon: FaAirbnb },
-  { name: 'Uber', icon: FaUber },
-  { name: 'AWS', icon: FaAws },
+const PARTNERS = [
+  { name: "Amazon", Icon: FaAmazon },
+  { name: "Google", Icon: FaGoogle },
+  { name: "Microsoft", Icon: FaMicrosoft },
+  { name: "Slack", Icon: FaSlack },
+  { name: "Dropbox", Icon: FaDropbox },
+  { name: "Stripe", Icon: FaStripe },
 ];
 
-export default function Partnership() {
+function Partnership() {
   return (
-    <section className="relative py-32 bg-slate-950 overflow-hidden flex flex-col justify-center items-center">
-      
-      {/* --- LAYER 1: DYNAMIC PARTNERS (Background Scrolling) --- */}
-      {/* Kita buat agak transparan (opacity-30) agar tidak menabrak teks utama */}
-      <div className="w-full relative z-0 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
-        <div className="flex overflow-hidden">
-          <motion.div 
-            className="flex gap-16 items-center whitespace-nowrap py-4"
-            animate={{ x: "-50%" }}
-            transition={{ 
-              ease: "linear", 
-              duration: 25, 
-              repeat: Infinity 
-            }}
-          >
-            {/* Duplikasi 4x untuk seamless loop tanpa putus */}
-            {[...partners, ...partners, ...partners, ...partners].map((partner, index) => (
-              <div key={index} className="flex items-center gap-3 text-4xl text-slate-400">
-                <partner.icon />
-                <span className="text-xl font-bold font-mono tracking-tighter">{partner.name}</span>
-              </div>
-            ))}
-          </motion.div>
-        </div>
+    <section className="py-16 bg-slate-50 border-y border-slate-200">
+      <div className="container mx-auto px-6 max-w-6xl">
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-center text-sm text-slate-500 font-medium mb-8"
+        >
+          Trusted by leading companies worldwide
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+          className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6"
+        >
+          {PARTNERS.map(({ name, Icon }) => (
+            <div
+              key={name}
+              className="flex items-center gap-2 text-slate-400 hover:text-slate-600 transition-colors"
+            >
+              <Icon className="text-2xl" />
+              <span className="text-sm font-medium">{name}</span>
+            </div>
+          ))}
+        </motion.div>
       </div>
-
-
     </section>
   );
-};
+}
+
+export default Partnership;

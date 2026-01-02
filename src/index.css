@@ -2,35 +2,21 @@
 @plugin "daisyui";
 
 @theme {
-  --font-sans: "Poppins", sans-serif;
-  --color-primary: #6366f1;
-  --color-secondary: #d946ef;
-  --color-accent: #8b5cf6;
-  --color-dark: #0f172a;
-  
-  --animate-float: float 6s ease-in-out infinite;
+  --font-sans: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
+  --color-primary: #2563eb;
+  --color-secondary: #1e40af;
+  --color-neutral: #f8fafc;
+  --color-base-100: #ffffff;
+  --color-base-200: #f1f5f9;
+  --color-base-300: #e2e8f0;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-@layer utilities {
-  .glass {
-    @apply bg-white/5 backdrop-blur-lg border border-white/10;
-  }
-  .glass-hover {
-    @apply hover:bg-white/10 transition-all duration-300;
-  }
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
-  }
-  .glow {
-    box-shadow: 0 0 40px -10px rgba(99, 102, 241, 0.5);
-  }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
