@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  # React Frontend
+  horahoredevops:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: horahoredevops-app
+    restart: unless-stopped
+    ports:
+      - "3001:80"
+    networks:
+      - app-network
+    environment:
+      - NODE_ENV=production
+    labels:
+      - "com.horahoredevops.description=HoraHore DevOps Landing Page"
+    healthcheck:
+      test:
+        ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  app-network:
+    driver: bridge
+# Volumes untuk future extensions (database, etc)
+# volumes:
+#   db-data:
