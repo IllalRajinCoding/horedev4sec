@@ -1,11 +1,7 @@
-version: "3.8"
-
 services:
   # React Frontend
   horahoredevops:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: horahoredevops:latest
     container_name: horahoredevops-app
     restart: unless-stopped
     ports:
