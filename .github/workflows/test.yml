@@ -51,7 +51,7 @@ jobs:
               run: |
                   echo "Test file from GitHub Actions" > test-upload.txt
                   cat test-upload.txt
-            
+
             - name: Upload Test File
               uses: appleboy/scp-action@v0.1.7
               with:
