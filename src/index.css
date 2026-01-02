@@ -11,6 +11,9 @@
   --animate-float: float 6s ease-in-out infinite;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
 @layer utilities {
   .glass {

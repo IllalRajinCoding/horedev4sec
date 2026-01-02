@@ -8,6 +8,9 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
             - name: Debug Secrets
               run: |
                   echo "=== Checking Secrets ==="
@@ -45,12 +48,17 @@ jobs:
                   rm -f ~/.ssh/test_key
 
             - name: Test SCP Action
+              run: |
+                  echo "Test file from GitHub Actions" > test-upload.txt
+                  cat test-upload.txt
+            
+            - name: Upload Test File
               uses: appleboy/scp-action@v0.1.7
               with:
                   host: ${{ secrets.VPS_HOST }}
                   username: ${{ secrets.VPS_USERNAME }}
                   key: ${{ secrets.VPS_SSH_KEY }}
                   port: ${{ secrets.VPS_PORT || 22 }}
-                  source: ".github/workflows/test.yml"
-                  target: "/tmp/test-upload"
+                  source: "test-upload.txt"
+                  target: "/tmp/github-actions-test"
                   debug: true
