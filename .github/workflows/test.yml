@@ -1,0 +1,56 @@
+name: Debug SSH Connection
+
+on:
+    workflow_dispatch: # Manual trigger only
+
+jobs:
+    debug:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Debug Secrets
+              run: |
+                  echo "=== Checking Secrets ==="
+                  echo "VPS_HOST is set: ${{ secrets.VPS_HOST != '' }}"
+                  echo "VPS_USERNAME is set: ${{ secrets.VPS_USERNAME != '' }}"
+                  echo "VPS_PORT is set: ${{ secrets.VPS_PORT != '' }}"
+                  echo "VPS_SSH_KEY is set: ${{ secrets.VPS_SSH_KEY != '' }}"
+                  echo ""
+                  echo "=== VPS_PORT Value ==="
+                  echo "${{ secrets.VPS_PORT }}"
+                  echo ""
+                  echo "=== SSH Key Format Check ==="
+                  echo "${{ secrets.VPS_SSH_KEY }}" | head -n 1
+                  echo "Key has $(echo '${{ secrets.VPS_SSH_KEY }}' | wc -l) lines"
+                  echo "${{ secrets.VPS_SSH_KEY }}" | tail -n 1
+
+            - name: Test SSH Connection
+              run: |
+                  echo "=== Creating SSH Key File ==="
+                  mkdir -p ~/.ssh
+                  echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/test_key
+                  chmod 600 ~/.ssh/test_key
+
+                  echo "=== Testing SSH Connection ==="
+                  ssh -vvv \
+                    -o StrictHostKeyChecking=no \
+                    -o UserKnownHostsFile=/dev/null \
+                    -o ConnectTimeout=10 \
+                    -i ~/.ssh/test_key \
+                    -p ${{ secrets.VPS_PORT || 22 }} \
+                    ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} \
+                    "echo 'SSH Connection Successful!' && whoami && pwd"
+
+                  echo "=== Cleanup ==="
+                  rm -f ~/.ssh/test_key
+
+            - name: Test SCP Action
+              uses: appleboy/scp-action@v0.1.7
+              with:
+                  host: ${{ secrets.VPS_HOST }}
+                  username: ${{ secrets.VPS_USERNAME }}
+                  key: ${{ secrets.VPS_SSH_KEY }}
+                  port: ${{ secrets.VPS_PORT || 22 }}
+                  source: ".github/workflows/test.yml"
+                  target: "/tmp/test-upload"
+                  debug: true
