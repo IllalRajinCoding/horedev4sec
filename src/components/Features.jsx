@@ -59,21 +59,23 @@ function FeatureCard({ Icon, title, description, size, extras, delay = 0 }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay, duration: 0.4 }}
-      className={`bg-white border border-slate-200 p-6 hover:border-primary transition-colors ${sizeClasses[size]}`}
+      className={`bg-base-100 border border-base-300 p-6 hover:border-primary transition-colors ${sizeClasses[size]}`}
     >
       <div className={size === "tall" ? "h-full flex flex-col" : ""}>
-        <div className="w-10 h-10 bg-primary flex items-center justify-center text-white mb-4">
+        <div className="w-10 h-10 bg-primary flex items-center justify-center text-primary-content mb-4">
           <Icon className="text-lg" />
         </div>
-        <h3 className="text-lg font-semibold text-slate-900 mb-2">{title}</h3>
-        <p className="text-sm text-slate-600 mb-4">{description}</p>
+        <h3 className="text-lg font-semibold text-base-content mb-2">
+          {title}
+        </h3>
+        <p className="text-sm text-base-content/70 mb-4">{description}</p>
 
         {extras && (
-          <div className="mt-auto pt-4 border-t border-slate-200 space-y-3">
+          <div className="mt-auto pt-4 border-t border-base-300 space-y-3">
             {extras.map(({ Icon: ExtraIcon, text }) => (
               <div
                 key={text}
-                className="flex items-center gap-3 text-sm text-slate-700"
+                className="flex items-center gap-3 text-sm text-base-content/80"
               >
                 <ExtraIcon className="text-primary" />
                 <span>{text}</span>
@@ -102,7 +104,7 @@ FeatureCard.propTypes = {
 
 function Features() {
   return (
-    <section id="features" className="py-24 bg-white">
+    <section id="features" className="py-24 bg-base-100">
       <div className="container mx-auto px-6 max-w-6xl">
         {/* Header */}
         <div className="text-center mb-16">
@@ -110,7 +112,7 @@ function Features() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-block px-3 py-1.5 bg-slate-100 border border-slate-200 text-primary text-xs font-medium mb-4"
+            className="inline-block px-3 py-1.5 bg-base-200 border border-base-300 text-primary text-xs font-medium mb-4"
           >
             Platform Features
           </motion.div>
@@ -119,7 +121,7 @@ function Features() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl md:text-4xl font-bold text-slate-900 mb-4"
+            className="text-3xl md:text-4xl font-bold text-base-content mb-4"
           >
             Everything You Need to{" "}
             <span className="text-primary">Scale Globally</span>
@@ -129,7 +131,7 @@ function Features() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-slate-600 max-w-2xl mx-auto"
+            className="text-base-content/70 max-w-2xl mx-auto"
           >
             Built for high-performance applications that demand reliability,
             security, and speed.
@@ -149,17 +151,17 @@ function Features() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="bg-slate-50 border border-slate-200 p-6 flex flex-col md:flex-row items-center justify-between gap-6"
+          className="bg-base-200 border border-base-300 p-6 flex flex-col md:flex-row items-center justify-between gap-6"
         >
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-white border border-slate-200 flex items-center justify-center">
-              <FaHeadset className="text-xl text-slate-700" />
+            <div className="w-12 h-12 bg-base-100 border border-base-300 flex items-center justify-center">
+              <FaHeadset className="text-xl text-base-content/80" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-slate-900">
+              <h3 className="text-lg font-semibold text-base-content">
                 24/7 Expert Support
               </h3>
-              <p className="text-sm text-slate-600">
+              <p className="text-sm text-base-content/70">
                 Our engineers are ready to help you solve any infrastructure
                 challenge.
               </p>
@@ -167,7 +169,7 @@ function Features() {
           </div>
           <a
             href="#contact"
-            className="bg-primary text-white px-6 py-3 font-medium hover:bg-secondary transition-colors whitespace-nowrap"
+            className="bg-primary text-primary-content px-6 py-3 font-medium hover:bg-secondary transition-colors whitespace-nowrap"
           >
             Contact Sales
           </a>

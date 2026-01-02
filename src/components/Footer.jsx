@@ -27,28 +27,40 @@ const FOOTER_LINKS = {
 };
 
 const SOCIAL_LINKS = [
-  { Icon: FaGithub, href: "https://github.com/IllalRajinCoding", label: "GitHub" },
-  { Icon: FaTwitter, href: "https://twitter.com/IllalRajinCoding", label: "Twitter" },
-  { Icon: FaLinkedin, href: "https://linkedin.com/in/robbanie-hillaly-kurniadien", label: "LinkedIn" },
+  {
+    Icon: FaGithub,
+    href: "https://github.com/IllalRajinCoding",
+    label: "GitHub",
+  },
+  {
+    Icon: FaTwitter,
+    href: "https://twitter.com/IllalRajinCoding",
+    label: "Twitter",
+  },
+  {
+    Icon: FaLinkedin,
+    href: "https://linkedin.com/in/robbanie-hillaly-kurniadien",
+    label: "LinkedIn",
+  },
   { Icon: FaEnvelope, href: "admin@horedev4sec.biz.id", label: "Email" },
 ];
 
 function Footer() {
   return (
-    <footer id="contact" className="bg-slate-900 text-white pt-16 pb-8">
+    <footer id="contact" className="bg-base-200 text-base-content pt-16 pb-8">
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="grid md:grid-cols-12 gap-12 mb-12">
           {/* Brand Section */}
           <div className="md:col-span-4">
             <a href="#home" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-primary flex items-center justify-center text-white">
+              <div className="w-8 h-8 bg-primary flex items-center justify-center text-primary-content">
                 <FaCloud className="text-sm" />
               </div>
               <span className="text-lg font-semibold">
                 Hore<span className="text-primary">Cloud</span>
               </span>
             </a>
-            <p className="text-slate-400 text-sm mb-6 max-w-xs">
+            <p className="text-base-content/60 text-sm mb-6 max-w-xs">
               Enterprise cloud infrastructure for modern businesses. Deploy
               globally with confidence.
             </p>
@@ -60,7 +72,7 @@ function Footer() {
                   aria-label={label}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 bg-slate-800 flex items-center justify-center text-slate-400 hover:text-primary hover:bg-slate-700 transition-colors"
+                  className="w-9 h-9 bg-base-300 flex items-center justify-center text-base-content/60 hover:text-primary hover:bg-base-100 transition-colors"
                 >
                   <Icon className="text-sm" />
                 </a>
@@ -77,7 +89,7 @@ function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-slate-400 hover:text-primary transition-colors"
+                      className="text-sm text-base-content/60 hover:text-primary transition-colors"
                     >
                       {link.label}
                     </a>
@@ -90,18 +102,18 @@ function Footer() {
           {/* Newsletter */}
           <div className="md:col-span-4">
             <h4 className="font-semibold mb-4">Stay Updated</h4>
-            <p className="text-sm text-slate-400 mb-4">
+            <p className="text-sm text-base-content/60 mb-4">
               Subscribe for product updates and cloud infrastructure tips.
             </p>
             <form className="flex gap-2" onSubmit={(e) => e.preventDefault()}>
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 bg-slate-800 border border-slate-700 px-4 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-primary"
+                className="flex-1 bg-base-100 border border-base-300 px-4 py-2 text-sm text-base-content placeholder-base-content/40 focus:outline-none focus:border-primary"
               />
               <button
                 type="submit"
-                className="bg-primary text-white px-4 py-2 text-sm font-medium hover:bg-secondary transition-colors"
+                className="bg-primary text-primary-content px-4 py-2 text-sm font-medium hover:bg-secondary transition-colors"
               >
                 Subscribe
               </button>
@@ -110,7 +122,7 @@ function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
+        <div className="border-t border-base-300 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-base-content/50">
           <p>2026 HoreCloud. All rights reserved.</p>
           <div className="flex gap-6">
             <a href="#home" className="hover:text-primary transition-colors">

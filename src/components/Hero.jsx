@@ -29,7 +29,7 @@ function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center pt-24 pb-16 bg-white"
+      className="relative min-h-screen flex items-center pt-24 pb-16 bg-base-100"
     >
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -43,17 +43,17 @@ function Hero() {
             {/* Badge */}
             <motion.div
               variants={FADE_IN_UP}
-              className="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-100 border border-slate-200 mb-6"
+              className="inline-flex items-center gap-2 px-3 py-1.5 bg-base-200 border border-base-300 mb-6"
             >
               <span className="w-2 h-2 bg-primary" />
-              <span className="text-xs font-medium text-slate-600">
+              <span className="text-xs font-medium text-base-content/70">
                 Enterprise Cloud Platform
               </span>
             </motion.div>
 
             <motion.h1
               variants={FADE_IN_UP}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-slate-900"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-base-content"
             >
               Cloud Infrastructure{" "}
               <span className="text-primary">Built for Scale</span>
@@ -61,7 +61,7 @@ function Hero() {
 
             <motion.p
               variants={FADE_IN_UP}
-              className="text-lg text-slate-600 mb-8 max-w-lg mx-auto lg:mx-0"
+              className="text-lg text-base-content/70 mb-8 max-w-lg mx-auto lg:mx-0"
             >
               Deploy applications globally with enterprise-grade security,
               99.99% uptime guarantee, and industry-leading performance.
@@ -73,14 +73,14 @@ function Hero() {
             >
               <a
                 href="#pricing"
-                className="px-6 py-3 bg-primary text-white font-medium hover:bg-secondary transition-colors flex items-center gap-2"
+                className="px-6 py-3 bg-primary text-primary-content font-medium hover:bg-secondary transition-colors flex items-center gap-2"
               >
                 Start Free Trial
                 <FaArrowRight className="text-sm" />
               </a>
               <a
                 href="#features"
-                className="px-6 py-3 font-medium text-slate-700 border border-slate-300 hover:border-primary hover:text-primary transition-colors"
+                className="px-6 py-3 font-medium text-base-content border border-base-300 hover:border-primary hover:text-primary transition-colors"
               >
                 View Features
               </a>
@@ -89,14 +89,14 @@ function Hero() {
             {/* Stats */}
             <motion.div
               variants={FADE_IN_UP}
-              className="flex items-center justify-center lg:justify-start gap-8 pt-8 border-t border-slate-200"
+              className="flex items-center justify-center lg:justify-start gap-8 pt-8 border-t border-base-300"
             >
               {STATS.map((stat) => (
                 <div key={stat.label} className="text-center lg:text-left">
-                  <p className="text-2xl font-bold text-slate-900">
+                  <p className="text-2xl font-bold text-base-content">
                     {stat.value}
                   </p>
-                  <p className="text-sm text-slate-500">{stat.label}</p>
+                  <p className="text-sm text-base-content/60">{stat.label}</p>
                 </div>
               ))}
             </motion.div>
@@ -109,15 +109,15 @@ function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="hidden lg:block"
           >
-            <div className="bg-slate-50 border border-slate-200 p-6">
+            <div className="bg-base-200 border border-base-300 p-6">
               {/* Dashboard Header */}
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-200">
-                <span className="text-sm font-medium text-slate-600">
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-base-300">
+                <span className="text-sm font-medium text-base-content/70">
                   Dashboard Overview
                 </span>
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-green-500" />
-                  <span className="text-xs text-slate-500">
+                  <span className="w-2 h-2 bg-success" />
+                  <span className="text-xs text-base-content/60">
                     All Systems Operational
                   </span>
                 </div>
@@ -125,36 +125,40 @@ function Hero() {
 
               {/* Metric Cards */}
               <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="bg-white p-4 border border-slate-200">
+                <div className="bg-base-100 p-4 border border-base-300">
                   <div className="flex justify-between items-start mb-3">
-                    <div className="p-2 bg-primary text-white">
+                    <div className="p-2 bg-primary text-primary-content">
                       <FaServer className="text-sm" />
                     </div>
-                    <span className="text-xs font-medium text-green-600">
+                    <span className="text-xs font-medium text-success">
                       +12%
                     </span>
                   </div>
-                  <p className="text-xs text-slate-500 mb-1">Total Requests</p>
-                  <p className="text-xl font-bold text-slate-900">2.4M</p>
+                  <p className="text-xs text-base-content/60 mb-1">
+                    Total Requests
+                  </p>
+                  <p className="text-xl font-bold text-base-content">2.4M</p>
                 </div>
 
-                <div className="bg-white p-4 border border-slate-200">
+                <div className="bg-base-100 p-4 border border-base-300">
                   <div className="flex justify-between items-start mb-3">
-                    <div className="p-2 bg-secondary text-white">
+                    <div className="p-2 bg-secondary text-secondary-content">
                       <FaShieldAlt className="text-sm" />
                     </div>
-                    <span className="text-xs font-medium text-green-600">
+                    <span className="text-xs font-medium text-success">
                       -2ms
                     </span>
                   </div>
-                  <p className="text-xs text-slate-500 mb-1">Avg. Latency</p>
-                  <p className="text-xl font-bold text-slate-900">14ms</p>
+                  <p className="text-xs text-base-content/60 mb-1">
+                    Avg. Latency
+                  </p>
+                  <p className="text-xl font-bold text-base-content">14ms</p>
                 </div>
               </div>
 
               {/* Activity Chart Placeholder */}
-              <div className="bg-white border border-slate-200 p-4">
-                <p className="text-xs text-slate-500 mb-4">
+              <div className="bg-base-100 border border-base-300 p-4">
+                <p className="text-xs text-base-content/60 mb-4">
                   Request Volume (24h)
                 </p>
                 <div className="flex items-end justify-between gap-1 h-24">
@@ -177,10 +181,10 @@ function Hero() {
                 {["API Gateway", "Database Cluster", "CDN Edge"].map((item) => (
                   <div
                     key={item}
-                    className="flex items-center justify-between py-2 px-3 bg-white border border-slate-200"
+                    className="flex items-center justify-between py-2 px-3 bg-base-100 border border-base-300"
                   >
-                    <span className="text-sm text-slate-700">{item}</span>
-                    <div className="flex items-center gap-2 text-green-600">
+                    <span className="text-sm text-base-content/80">{item}</span>
+                    <div className="flex items-center gap-2 text-success">
                       <FaCheckCircle className="text-xs" />
                       <span className="text-xs font-medium">Healthy</span>
                     </div>

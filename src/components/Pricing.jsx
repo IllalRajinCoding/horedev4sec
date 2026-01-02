@@ -60,32 +60,32 @@ function PricingCard({ plan, isYearly, delay }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay, duration: 0.4 }}
-      className={`relative bg-white border p-6 ${
+      className={`relative bg-base-100 border p-6 ${
         plan.recommended
           ? "border-primary"
-          : "border-slate-200 hover:border-slate-300"
+          : "border-base-300 hover:border-base-content/30"
       } transition-colors`}
     >
       {plan.recommended && (
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white px-3 py-1 text-xs font-medium">
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-content px-3 py-1 text-xs font-medium">
           RECOMMENDED
         </div>
       )}
 
       <div className="mb-6">
-        <h3 className="text-lg font-semibold text-slate-900 mb-1">
+        <h3 className="text-lg font-semibold text-base-content mb-1">
           {plan.name}
         </h3>
-        <p className="text-sm text-slate-500">{plan.description}</p>
+        <p className="text-sm text-base-content/60">{plan.description}</p>
       </div>
 
       <div className="mb-6">
         <div className="flex items-baseline gap-1">
-          <span className="text-3xl font-bold text-slate-900">${price}</span>
-          <span className="text-slate-500">/month</span>
+          <span className="text-3xl font-bold text-base-content">${price}</span>
+          <span className="text-base-content/60">/month</span>
         </div>
         {isYearly && (
-          <p className="text-xs text-green-600 mt-1">
+          <p className="text-xs text-success mt-1">
             Save 20% with annual billing
           </p>
         )}
@@ -95,16 +95,20 @@ function PricingCard({ plan, isYearly, delay }) {
         {plan.features.map((feature) => (
           <li key={feature.name} className="flex items-center gap-3 text-sm">
             {feature.included ? (
-              <div className="w-5 h-5 bg-primary flex items-center justify-center text-white">
+              <div className="w-5 h-5 bg-primary flex items-center justify-center text-primary-content">
                 <FaCheck className="text-xs" />
               </div>
             ) : (
-              <div className="w-5 h-5 bg-slate-100 flex items-center justify-center text-slate-400">
+              <div className="w-5 h-5 bg-base-200 flex items-center justify-center text-base-content/40">
                 <FaTimes className="text-xs" />
               </div>
             )}
             <span
-              className={feature.included ? "text-slate-700" : "text-slate-400"}
+              className={
+                feature.included
+                  ? "text-base-content/80"
+                  : "text-base-content/40"
+              }
             >
               {feature.name}
             </span>
@@ -116,8 +120,8 @@ function PricingCard({ plan, isYearly, delay }) {
         type="button"
         className={`w-full py-3 font-medium transition-colors ${
           plan.recommended
-            ? "bg-primary hover:bg-secondary text-white"
-            : "bg-slate-100 hover:bg-slate-200 text-slate-900"
+            ? "bg-primary hover:bg-secondary text-primary-content"
+            : "bg-base-200 hover:bg-base-300 text-base-content"
         }`}
       >
         Get Started
@@ -152,7 +156,7 @@ function Pricing() {
   }, []);
 
   return (
-    <section id="pricing" className="py-24 bg-slate-50">
+    <section id="pricing" className="py-24 bg-base-200">
       <div className="container mx-auto px-6 max-w-6xl">
         {/* Header */}
         <div className="text-center mb-12">
@@ -160,7 +164,7 @@ function Pricing() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold text-slate-900 mb-4"
+            className="text-3xl md:text-4xl font-bold text-base-content mb-4"
           >
             Simple, Transparent <span className="text-primary">Pricing</span>
           </motion.h2>
@@ -169,7 +173,7 @@ function Pricing() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-slate-600 mb-8"
+            className="text-base-content/70 mb-8"
           >
             Choose the plan that fits your needs. No hidden fees.
           </motion.p>
@@ -180,14 +184,14 @@ function Pricing() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center p-1 bg-white border border-slate-200"
+            className="inline-flex items-center p-1 bg-base-100 border border-base-300"
           >
             <button
               type="button"
               className={`px-5 py-2 text-sm font-medium transition-colors ${
                 isYearly
-                  ? "text-slate-600 hover:text-slate-900"
-                  : "bg-slate-900 text-white"
+                  ? "text-base-content/60 hover:text-base-content"
+                  : "bg-base-content text-base-100"
               }`}
               onClick={() => handleBillingToggle(false)}
             >
@@ -197,8 +201,8 @@ function Pricing() {
               type="button"
               className={`px-5 py-2 text-sm font-medium transition-colors ${
                 isYearly
-                  ? "bg-primary text-white"
-                  : "text-slate-600 hover:text-slate-900"
+                  ? "bg-primary text-primary-content"
+                  : "text-base-content/60 hover:text-base-content"
               }`}
               onClick={() => handleBillingToggle(true)}
             >

@@ -19,13 +19,13 @@ const PARTNERS = [
 
 function Partnership() {
   return (
-    <section className="py-16 bg-slate-50 border-y border-slate-200">
+    <section className="py-16 bg-base-200 border-y border-base-300">
       <div className="container mx-auto px-6 max-w-6xl">
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center text-sm text-slate-500 font-medium mb-8"
+          className="text-center text-sm text-base-content/60 font-medium mb-8"
         >
           Trusted by leading companies worldwide
         </motion.p>
@@ -40,7 +40,7 @@ function Partnership() {
           {PARTNERS.map(({ name, Icon }) => (
             <div
               key={name}
-              className="flex items-center gap-2 text-slate-400 hover:text-slate-600 transition-colors"
+              className="flex items-center gap-2 text-base-content/40 hover:text-base-content/70 transition-colors"
             >
               <Icon className="text-2xl" />
               <span className="text-sm font-medium">{name}</span>
