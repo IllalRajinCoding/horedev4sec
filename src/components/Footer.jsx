@@ -26,6 +26,7 @@ const FOOTER_LINKS = {
   ],
 };
 
+// --- BAGIAN INI YANG DIUBAH ---
 const SOCIAL_LINKS = [
   {
     Icon: FaGithub,
@@ -42,7 +43,13 @@ const SOCIAL_LINKS = [
     href: "https://linkedin.com/in/robbanie-hillaly-kurniadien",
     label: "LinkedIn",
   },
-  { Icon: FaEnvelope, href: "admin@horedev4sec.biz.id", label: "Email" },
+  {
+    Icon: FaEnvelope,
+    // Format: mailto:email?subject=Isi%20Subject
+    // %20 adalah kode untuk spasi
+    href: "mailto:admin@horedev4sec.biz.id?subject=Pertanyaan%20Mengenai%20HoreCloud",
+    label: "Email",
+  },
 ];
 
 function Footer() {
@@ -65,18 +72,25 @@ function Footer() {
               globally with confidence.
             </p>
             <div className="flex gap-3">
-              {SOCIAL_LINKS.map(({ Icon, href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-9 h-9 bg-base-300 flex items-center justify-center text-base-content/60 hover:text-primary hover:bg-base-100 transition-colors"
-                >
-                  <Icon className="text-sm" />
-                </a>
-              ))}
+              {SOCIAL_LINKS.map(({ Icon, href, label }) => {
+                // Logic tambahan: Jika link adalah email (mailto), jangan buka tab baru (target blank)
+                // agar browser tidak membuka tab kosong sebelum membuka aplikasi email.
+                const isMail = href.startsWith("mailto:");
+                
+                return (
+                  <a
+                    key={label}
+                    href={href}
+                    aria-label={label}
+                    // Jika email, targetnya self. Jika bukan, targetnya blank (tab baru).
+                    target={isMail ? "_self" : "_blank"}
+                    rel="noopener noreferrer"
+                    className="w-9 h-9 bg-base-300 flex items-center justify-center text-base-content/60 hover:text-primary hover:bg-base-100 transition-colors"
+                  >
+                    <Icon className="text-sm" />
+                  </a>
+                );
+              })}
             </div>
           </div>
 

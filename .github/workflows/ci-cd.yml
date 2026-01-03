@@ -87,6 +87,5 @@ jobs:
 
             # Show status
             docker-compose ps
-            echo ""
-            echo "✅ Deployment completed successfully!"
-            echo "🌐 App running on http://localhost:3001"
+            echo "Deployment completed successfully!"
+            echo "App running on http://localhost:3001"

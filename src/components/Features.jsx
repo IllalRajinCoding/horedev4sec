@@ -62,9 +62,14 @@ function FeatureCard({ Icon, title, description, size, extras, delay = 0 }) {
       className={`bg-base-100 border border-base-300 p-6 hover:border-primary transition-colors ${sizeClasses[size]}`}
     >
       <div className={size === "tall" ? "h-full flex flex-col" : ""}>
-        <div className="w-10 h-10 bg-primary flex items-center justify-center text-primary-content mb-4">
-          <Icon className="text-lg" />
+        {/* UPDATED: Standarisasi ukuran container (48x48px) dan icon (24px) */}
+        <div
+          className="bg-primary flex items-center justify-center text-primary-content mb-4"
+          style={{ width: 48, height: 48 }}
+        >
+          <Icon style={{ width: 24, height: 24 }} />
         </div>
+
         <h3 className="text-lg font-semibold text-base-content mb-2">
           {title}
         </h3>
@@ -77,7 +82,11 @@ function FeatureCard({ Icon, title, description, size, extras, delay = 0 }) {
                 key={text}
                 className="flex items-center gap-3 text-sm text-base-content/80"
               >
-                <ExtraIcon className="text-primary" />
+                {/* UPDATED: Standarisasi ukuran icon list (24px) agar sama dengan icon utama */}
+                <ExtraIcon
+                  className="text-primary flex-shrink-0"
+                  style={{ width: 24, height: 24 }}
+                />
                 <span>{text}</span>
               </div>
             ))}
@@ -154,11 +163,15 @@ function Features() {
           className="bg-base-200 border border-base-300 p-6 flex flex-col md:flex-row items-center justify-between gap-6"
         >
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-base-100 border border-base-300 flex items-center justify-center">
-              <FaHeadset className="text-xl text-base-content/80" />
+            {/* UPDATED: Standarisasi ukuran container (48x48px) dan icon (24px) agar sama dengan FeatureCard */}
+            <div
+              className="bg-primary flex items-center justify-center text-primary-content mb-4 md:mb-0"
+              style={{ width: 48, height: 48 }}
+            >
+              <FaHeadset style={{ width: 24, height: 24 }} />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-base-content">
+              <h3 className="text-sm font-semibold text-base-content">
                 24/7 Expert Support
               </h3>
               <p className="text-sm text-base-content/70">
