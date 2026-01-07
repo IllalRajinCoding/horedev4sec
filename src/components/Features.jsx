@@ -1,192 +1,176 @@
 import { motion } from "framer-motion";
 import PropTypes from "prop-types";
-import {
-  FaBolt,
-  FaShieldAlt,
-  FaGlobe,
-  FaDatabase,
-  FaHeadset,
-  FaLock,
-  FaCode,
-} from "react-icons/fa";
 
+// Data tanpa Icon. Fokus pada konten teks.
 const MAIN_FEATURES = [
   {
-    Icon: FaBolt,
-    title: "Lightning Performance",
-    description:
-      "NVMe SSDs and high-frequency CPUs ensure your applications run at peak performance with sub-10ms latency.",
-    size: "large",
+    category: "Performance",
+    title: "Zero Latency",
+    description: "Optimized for speed with NVMe storage and edge computing logic close to the user.",
+    size: "large", // Spans 2 cols
+    visualType: "metric",
+    metric: "10ms",
+    metricDetail: "Global average response time",
   },
   {
-    Icon: FaShieldAlt,
-    title: "Enterprise Security",
-    description:
-      "ISO 27001 certified data centers with advanced DDoS protection and automated firewalls.",
-    size: "tall",
-    extras: [
-      { Icon: FaLock, text: "End-to-End Encryption" },
-      { Icon: FaShieldAlt, text: "WAF Protection" },
-      { Icon: FaCode, text: "Auto Security Patches" },
-    ],
+    category: "Security",
+    title: "Shielded Infrastructure",
+    description: "Enterprise-grade protection baked into every deployment layer.",
+    size: "tall", // Spans 2 rows
+    visualType: "code", // Menampilkan list seperti kode
+    extras: ["E2E Encryption", "Auto-WAF Rules", "DDoS Mitigation", "ISO 27001"],
   },
   {
-    Icon: FaGlobe,
-    title: "Global Edge Network",
-    description:
-      "Deploy close to your users with 200+ points of presence worldwide.",
+    category: "Network",
+    title: "Edge Network",
+    description: "Instant deployment to 200+ regions worldwide.",
     size: "medium",
+    visualType: "metric",
+    metric: "200+",
+    metricDetail: "Points of Presence",
   },
   {
-    Icon: FaDatabase,
-    title: "Managed Databases",
-    description:
-      "Automated backups, scaling, and maintenance for PostgreSQL, MySQL, and MongoDB.",
+    category: "Reliability",
+    title: "Uptime SLA",
+    description: "Redundant systems ensuring your data is always available.",
     size: "medium",
+    visualType: "metric",
+    metric: "99.99%",
+    metricDetail: "Guaranteed Availability",
   },
 ];
 
-function FeatureCard({ Icon, title, description, size, extras, delay = 0 }) {
+function FeatureCard({
+  category,
+  title,
+  description,
+  size,
+  visualType,
+  extras,
+  metric,
+  metricDetail,
+  delay = 0,
+}) {
   const sizeClasses = {
     large: "md:col-span-2",
-    tall: "md:row-span-2",
+    tall: "md:row-span-2 h-full",
     medium: "",
   };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay, duration: 0.4 }}
-      className={`bg-base-100 border border-base-300 p-6 hover:border-primary transition-colors ${sizeClasses[size]}`}
+      transition={{ delay, duration: 0.5, ease: "easeOut" }}
+      className={`group relative flex flex-col p-8 rounded-xl bg-base-100 border border-base-content/10 hover:border-base-content/30 transition-colors duration-300 overflow-hidden ${sizeClasses[size]}`}
     >
-      <div className={size === "tall" ? "h-full flex flex-col" : ""}>
-        {/* UPDATED: Standarisasi ukuran container (48x48px) dan icon (24px) */}
-        <div
-          className="bg-primary flex items-center justify-center text-primary-content mb-4"
-          style={{ width: 48, height: 48 }}
-        >
-          <Icon style={{ width: 24, height: 24 }} />
-        </div>
+      {/* Background Gradient Halus (Vercel Style) */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-base-content/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-        <h3 className="text-lg font-semibold text-base-content mb-2">
+      {/* Top Label (Monospace) */}
+      <div className="mb-6 flex items-center gap-2">
+         <span className="w-2 h-2 rounded-full bg-base-content/20 group-hover:bg-primary transition-colors duration-300" />
+         <span className="text-xs font-mono uppercase tracking-widest text-base-content/50">
+           {category}
+         </span>
+      </div>
+
+      {/* Main Typography */}
+      <div className="relative z-10 mb-auto">
+        <h3 className="text-2xl font-semibold text-base-content mb-3 tracking-tight group-hover:text-primary transition-colors duration-300">
           {title}
         </h3>
-        <p className="text-sm text-base-content/70 mb-4">{description}</p>
+        <p className="text-sm text-base-content/60 leading-relaxed max-w-md">
+          {description}
+        </p>
+      </div>
 
-        {extras && (
-          <div className="mt-auto pt-4 border-t border-base-300 space-y-3">
-            {extras.map(({ Icon: ExtraIcon, text }) => (
-              <div
-                key={text}
-                className="flex items-center gap-3 text-sm text-base-content/80"
-              >
-                {/* UPDATED: Standarisasi ukuran icon list (24px) agar sama dengan icon utama */}
-                <ExtraIcon
-                  className="text-primary flex-shrink-0"
-                  style={{ width: 24, height: 24 }}
-                />
-                <span>{text}</span>
-              </div>
-            ))}
+      {/* Visual Section: METRIC or CODE list */}
+      <div className="relative z-10 mt-12">
+        
+        {/* Type 1: Massive Metric (Typographic Art) */}
+        {visualType === "metric" && (
+          <div>
+            <span className="block text-6xl md:text-7xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-base-content to-base-content/20">
+              {metric}
+            </span>
+            <span className="block mt-2 text-xs font-mono text-base-content/40 border-t border-base-content/10 pt-2 inline-block pr-4">
+              {metricDetail}
+            </span>
           </div>
         )}
+
+        {/* Type 2: Code/Terminal List */}
+        {visualType === "code" && (
+          <div className="bg-base-200/50 rounded-lg p-4 font-mono text-xs border border-base-content/5">
+            <div className="flex gap-1.5 mb-3 border-b border-base-content/5 pb-2">
+               <div className="w-2 h-2 rounded-full bg-base-content/20"></div>
+               <div className="w-2 h-2 rounded-full bg-base-content/20"></div>
+            </div>
+            <div className="space-y-2 text-base-content/70">
+              {extras.map((item, i) => (
+                <div key={i} className="flex gap-2 opacity-80 group-hover:opacity-100 transition-opacity">
+                  <span className="text-base-content/30 select-none">0{i + 1}</span>
+                  <span className="text-primary/80">✓</span>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
       </div>
     </motion.div>
   );
 }
 
 FeatureCard.propTypes = {
-  Icon: PropTypes.elementType.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(["large", "tall", "medium"]).isRequired,
-  extras: PropTypes.arrayOf(
-    PropTypes.shape({
-      Icon: PropTypes.elementType.isRequired,
-      text: PropTypes.string.isRequired,
-    })
-  ),
+  category: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  size: PropTypes.string,
+  visualType: PropTypes.string,
+  extras: PropTypes.array,
+  metric: PropTypes.string,
+  metricDetail: PropTypes.string,
   delay: PropTypes.number,
 };
 
 function Features() {
   return (
-    <section id="features" className="py-24 bg-base-100">
+    <section className="py-32 bg-base-100 text-base-content">
       <div className="container mx-auto px-6 max-w-6xl">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-block px-3 py-1.5 bg-base-200 border border-base-300 text-primary text-xs font-medium mb-4"
-          >
-            Platform Features
-          </motion.div>
+        
+        {/* Header - Left Aligned, Clean */}
+        <div className="mb-24 border-b border-base-content/10 pb-8">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl md:text-4xl font-bold text-base-content mb-4"
+            className="text-5xl font-bold tracking-tighter mb-4"
           >
-            Everything You Need to{" "}
-            <span className="text-primary">Scale Globally</span>
+            Built for the <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/50">Future.</span>
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-base-content/70 max-w-2xl mx-auto"
+             initial={{ opacity: 0, y: 10 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             viewport={{ once: true }}
+             transition={{ delay: 0.1 }}
+             className="text-lg text-base-content/60 max-w-2xl font-light"
           >
-            Built for high-performance applications that demand reliability,
-            security, and speed.
+            High-performance primitives for modern applications. 
+            No icons, no clutter—just raw power.
           </motion.p>
         </div>
 
-        {/* Feature Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {MAIN_FEATURES.map((feature, index) => (
             <FeatureCard key={feature.title} {...feature} delay={index * 0.1} />
           ))}
         </div>
 
-        {/* CTA Banner */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="bg-base-200 border border-base-300 p-6 flex flex-col md:flex-row items-center justify-between gap-6"
-        >
-          <div className="flex items-center gap-4">
-            {/* UPDATED: Standarisasi ukuran container (48x48px) dan icon (24px) agar sama dengan FeatureCard */}
-            <div
-              className="bg-primary flex items-center justify-center text-primary-content mb-4 md:mb-0"
-              style={{ width: 48, height: 48 }}
-            >
-              <FaHeadset style={{ width: 24, height: 24 }} />
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-base-content">
-                24/7 Expert Support
-              </h3>
-              <p className="text-sm text-base-content/70">
-                Our engineers are ready to help you solve any infrastructure
-                challenge.
-              </p>
-            </div>
-          </div>
-          <a
-            href="#contact"
-            className="bg-primary text-primary-content px-6 py-3 font-medium hover:bg-secondary transition-colors whitespace-nowrap"
-          >
-            Contact Sales
-          </a>
-        </motion.div>
       </div>
     </section>
   );

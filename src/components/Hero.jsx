@@ -53,10 +53,10 @@ function Hero() {
 
             <motion.h1
               variants={FADE_IN_UP}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-base-content"
+              className="text-4xl md:text-5xl lg:text-6xl leading-tight ont-light text-base-content mb-6 font-bold tracking-tighter"
             >
               Cloud Infrastructure{" "}
-              <span className="text-primary">Built for Scale</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/50">Built for Scale</span>
             </motion.h1>
 
             <motion.p

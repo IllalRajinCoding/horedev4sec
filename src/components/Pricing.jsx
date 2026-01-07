@@ -164,9 +164,9 @@ function Pricing() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold text-base-content mb-4"
+            className="text-3xl md:text-4xl font-bold text-base-content mb-4 tracking-tighter"
           >
-            Simple, Transparent <span className="text-primary">Pricing</span>
+            Simple, Transparent <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/50">Pricing</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
