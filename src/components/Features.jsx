@@ -143,7 +143,7 @@ function Features() {
       <div className="container mx-auto px-6 max-w-6xl">
         
         {/* Header - Left Aligned, Clean */}
-        <div className="mb-24 border-b border-base-content/10 pb-8">
+        <div className="mb-24 border-b border-base-content/10 pb-8" id="features">
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
